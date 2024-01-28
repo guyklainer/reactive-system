@@ -1,5 +1,5 @@
 class State {
-    private data = ["={1}*3", 22]
+    private data = [2, 18, "=2*{0}", 9, "={2}+1*5"]
 
     getValue(index: number): number {
         const value = this.data[index];
@@ -12,6 +12,10 @@ class State {
                return this.calculate(value);
            }
         }
+    }
+
+    getAll() {
+        return this.data.map((value, index) => `[${index}: ${this.getValue(index)}]`)
     }
 
     private calculate(exp: string): number {

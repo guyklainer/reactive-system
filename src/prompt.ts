@@ -1,5 +1,9 @@
 import inquirer, {QuestionCollection} from 'inquirer';
 
+type Answer = {
+    action: string
+}
+
 const questions: QuestionCollection = [
     {
         type: "input",
@@ -8,12 +12,12 @@ const questions: QuestionCollection = [
     }
 ];
 
-const prompt = () => {
+const prompt: () => Promise<Answer> = () => {
     console.log(`Menu:
   a. Print current state
   b. Change a value
     `);
-    return inquirer.prompt(questions);
+    return inquirer.prompt<Answer>(questions);
 };
 
 export default prompt;
