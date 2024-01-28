@@ -14,6 +14,10 @@ class State {
         }
     }
 
+    setValue(index, newVal) {
+        this.data[index] = newVal;
+    }
+
     getAll() {
         return this.data.map((value, index) => `[${index}: ${this.getValue(index)}]`)
     }

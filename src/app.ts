@@ -1,11 +1,27 @@
-import prompt from "./prompt.js";
+import {prompt, menu} from "./prompt.js";
 import State from "./state.js";
 
 const state = new State();
+run();
 
-const answer = await prompt();
-switch (answer.action) {
-    case "a": {
-        console.log(state.getAll());
+
+async function run(answer?) {
+    if(answer) {
+        const [choice, index, newVal] = answer.action.trim().split(/\s+/);
+
+        switch (choice) {
+            case "a": {
+                console.log(state.getAll());
+                break;
+            }
+            case "b": {
+                state.setValue(index, newVal);
+                console.log(`Cell #${index} changed to ${newVal}`);
+            }
+        }
+    } else {
+        menu();
     }
+
+    run(await prompt());
 }

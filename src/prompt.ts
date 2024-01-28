@@ -12,12 +12,15 @@ const questions: QuestionCollection = [
     }
 ];
 
-const prompt: () => Promise<Answer> = () => {
+const menu = () => {
     console.log(`Menu:
   a. Print current state
   b. Change a value
     `);
+}
+
+const prompt: () => Promise<Answer> = () => {
     return inquirer.prompt<Answer>(questions);
 };
 
-export default prompt;
+export {prompt, menu};
