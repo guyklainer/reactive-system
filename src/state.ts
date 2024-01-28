@@ -4,14 +4,7 @@ class State {
     private data: string[];
 
     constructor(path: string) {
-        try {
-            if(existsSync(path)) {
-                const string_output = readFileSync(path, 'utf8');
-                this.data = JSON.parse(string_output);
-            }
-        } catch (e) {
-            this.data = [];
-        }
+        this.init(path);
     }
 
     getValue(index: number): number {
@@ -33,6 +26,17 @@ class State {
 
     getAll() {
         return this.data.map((value, index) => `[${index}: ${this.getValue(index)}]`)
+    }
+
+    private init(path: string) {
+        try {
+            if(existsSync(path)) {
+                const string_output = readFileSync(path, 'utf8');
+                this.data = JSON.parse(string_output);
+            }
+        } catch (e) {
+            this.data = [];
+        }
     }
 
     private calculate(exp: string): number {
