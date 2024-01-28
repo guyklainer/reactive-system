@@ -30,10 +30,10 @@ class State {
 
     setValue(index, newVal) {
         this.data[index] = newVal;
+        this.cache.splice(0);
     }
 
     getAll() {
-        this.cache.splice(0);
         return this.data.map((value, index) => `[${index}: ${this.getValue(index)}]`)
     }
 
