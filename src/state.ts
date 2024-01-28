@@ -1,5 +1,18 @@
+import {readFileSync, existsSync} from "fs";
+
 class State {
-    private data = [2, 18, "=2*{0}", 9, "={2}+1*5"]
+    private data: string[];
+
+    constructor(path: string) {
+        try {
+            if(existsSync(path)) {
+                const string_output = readFileSync(path, 'utf8');
+                this.data = JSON.parse(string_output);
+            }
+        } catch (e) {
+            this.data = [];
+        }
+    }
 
     getValue(index: number): number {
         const value = this.data[index];

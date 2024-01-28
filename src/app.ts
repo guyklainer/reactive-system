@@ -1,9 +1,8 @@
 import prompt from "./prompt.js";
 import State from "./state.js";
 
-const state = new State();
-run();
-
+const path = process.argv[2];
+const state = new State(path);
 
 async function run(answer?) {
     if(answer) {
@@ -15,11 +14,19 @@ async function run(answer?) {
                 break;
             }
             case "b": {
-                state.setValue(index, newVal);
-                console.log(`Cell #${index} changed to ${newVal}\n`);
+                if(index >= 0 && newVal){
+                    state.setValue(index, newVal);
+                    console.log(`Cell #${index} changed to ${newVal}`);
+                } else {
+                    console.log("Please specify index and value");
+                }
             }
         }
+
+        console.log('\n');
     }
 
     run(await prompt());
 }
+
+run();
