@@ -10,7 +10,7 @@ async function run(answer?) {
 
         switch (choice) {
             case "a": {
-                console.log(state.getAll());
+                console.log.call(console.log, state.getAll());
                 break;
             }
             case "b": {
