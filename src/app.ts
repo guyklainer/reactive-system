@@ -1,4 +1,4 @@
-import {prompt, menu} from "./prompt.js";
+import prompt from "./prompt.js";
 import State from "./state.js";
 
 const state = new State();
@@ -16,11 +16,9 @@ async function run(answer?) {
             }
             case "b": {
                 state.setValue(index, newVal);
-                console.log(`Cell #${index} changed to ${newVal}`);
+                console.log(`Cell #${index} changed to ${newVal}\n`);
             }
         }
-    } else {
-        menu();
     }
 
     run(await prompt());

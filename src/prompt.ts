@@ -20,7 +20,8 @@ const menu = () => {
 }
 
 const prompt: () => Promise<Answer> = () => {
+    menu();
     return inquirer.prompt<Answer>(questions);
 };
 
-export {prompt, menu};
+export default prompt;
