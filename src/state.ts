@@ -61,8 +61,8 @@ class State {
         let currentValue = null;
         let currentOp = null;
 
-        const macro = /([0-9]+)([+\-*\/]{0,1})/g;
-        const result = macro[Symbol.matchAll](exp);
+        const group = /([0-9]+)([+\-*\/]{0,1})/g;
+        const result = group[Symbol.matchAll](exp);
 
         for (const match of result) {
             const operand = Number(match[1]);
