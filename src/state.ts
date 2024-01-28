@@ -33,6 +33,8 @@ class State {
             if(existsSync(path)) {
                 const string_output = readFileSync(path, 'utf8');
                 this.data = JSON.parse(string_output);
+            } else {
+                this.data = [];
             }
         } catch (e) {
             this.data = [];
@@ -51,7 +53,7 @@ class State {
 
         for (const match of result) {
             const cell = match[1].slice(1, -1);
-            decodedExp = exp.replace(match[1], this.getValue(Number(cell)).toString())
+            decodedExp = decodedExp.replace(match[1], this.getValue(Number(cell)).toString())
         }
 
         return decodedExp;
