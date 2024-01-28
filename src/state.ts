@@ -2,21 +2,29 @@ import {readFileSync, existsSync} from "fs";
 
 class State {
     private data: string[];
+    private cache: number[];
 
     constructor(path: string) {
         this.init(path);
     }
 
     getValue(index: number): number {
+        if(this.cache[index]){
+            return this.cache[index];
+        }
+
         const value = this.data[index];
+
         if(value) {
            const number = Number(value);
            if(!isNaN(number)){ //simple number
-               return number;
+               this.cache[index] = number;
 
            } else if(typeof value === "string" && value[0] === '='){
-               return this.calculate(value);
+               this.cache[index] = this.calculate(value);
            }
+
+           return this.cache[index];
         }
     }
 
@@ -25,10 +33,12 @@ class State {
     }
 
     getAll() {
+        this.cache.splice(0);
         return this.data.map((value, index) => `[${index}: ${this.getValue(index)}]`)
     }
 
     private init(path: string) {
+        this.cache = [];
         try {
             if(existsSync(path)) {
                 const string_output = readFileSync(path, 'utf8');
