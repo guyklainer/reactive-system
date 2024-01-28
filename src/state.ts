@@ -52,8 +52,9 @@ class State {
         const result = macro[Symbol.matchAll](exp);
 
         for (const match of result) {
-            const cell = match[1].slice(1, -1);
-            decodedExp = decodedExp.replace(match[1], this.getValue(Number(cell)).toString())
+            const cell = Number(match[1].slice(1, -1));
+            const cellValue = this.getValue(cell).toString();
+            decodedExp = decodedExp.replace(match[1], cellValue)
         }
 
         return decodedExp;

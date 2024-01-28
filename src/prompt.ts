@@ -1,6 +1,6 @@
 import inquirer, {QuestionCollection} from 'inquirer';
 
-type Answer = {
+export type Answer = {
     action: string
 }
 
