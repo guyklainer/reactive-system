@@ -14,6 +14,7 @@ note: example initial file is located at `./state.json`
 
 ### Next Steps:
 - Move cache update to the setter (improve get performance)
+- Validations and safety checks
 - Add unit tests
 
 ### Built and run on:
